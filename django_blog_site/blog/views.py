@@ -5,12 +5,14 @@ from django.core.paginator import Paginator, EmptyPage
 from django.core.mail import send_mail
 from .models import Post, Comment
 from .forms import EmailPostForm, CommentForm
+from taggit.models import Tag
 
-
-
-
-def post_list(request):
+def post_list(request, tag_slug=None):
   all_posts = Post.published.all()
+  tag = None
+  if tag_slug: # if tag is given, filter by tag
+    tag = get_object_or_404(Tag, slug=tag_slug)
+    all_posts = all_posts.filter(tags__in=[tag])
 
   # restrict number of posts displayed in one page to enhance readability
   paginator = Paginator(all_posts, 3)
@@ -23,7 +25,7 @@ def post_list(request):
 
   return render(request, 
                 'blog/post/list.html', 
-                {'posts': posts})
+                {'posts': posts, 'tag': tag})
 
 def post_detail(request, year, month, day, slug):
   # try:
