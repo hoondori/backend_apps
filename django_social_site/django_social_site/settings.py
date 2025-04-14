@@ -129,3 +129,7 @@ LOGOUT_URL = 'user_logout'
 
 # Email Server Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# for photo upload
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'

@@ -1,0 +1,7 @@
+
+markdown==3.4.1
+Django==4.1.13
+django-taggit==3.0.0
+--only-binary=psycopg2-binary
+psycopg2-binary
+pillow==9.2.0

@@ -19,7 +19,13 @@ urlpatterns = [
        auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
   path('password-reset/complete', # notify user that password reset has ben done.
        auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+
+  # new user register
   path('register/', views.register, name='register'),
+
+  # user edit
+  path('edit/', views.edit, name='edit'),
+
   path('', views.dashboard, name='dashboard'),
 
 ]
